@@ -1,0 +1,8 @@
+﻿namespace InputSpace
+{
+    class InputHandler
+    { 
+        
+    }
+}
+

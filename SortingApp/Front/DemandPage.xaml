@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SortingApp.DemandPage">
+    <Grid>
+    <StackLayout Orientation="Horizontal">
+
+        <!-- MainPage.xaml -->
+        <Frame VerticalOptions="FillAndExpand"
+               Padding="15">
+            <Frame.Background>
+                <LinearGradientBrush StartPoint = "0,0"
+                                EndPoint="0,1">
+                        <GradientStop Color="#AAAEE7"
+                                      Offset="0.1" />
+                        <GradientStop Color="AliceBlue"
+                                      Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Frame CornerRadius="20" 
+               Padding="-5">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#491375"
+                          Offset="0.1" />
+                            <GradientStop Color="#80C2FE"
+                          Offset="1.0" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Frame BackgroundColor="Transparent">
+                    <StackLayout Orientation="Vertical" BackgroundColor="Transparent">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <!-- Email handler -->
+                            <Frame HeightRequest="25" HorizontalOptions="FillAndExpand" Padding="5,-2,0,0" CornerRadius="10" >
+                                <StackLayout>
+                                    <Label 
+                                           x:Name="mailText" 
+                                           TextColor="Black"
+                                           Text="mail@mail.com"
+                                           LineBreakMode="TailTruncation"
+                                           HorizontalTextAlignment="Start"
+                                           FontSize="16"
+                                           FontFamily="UnboundedMedium"
+                                           />
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnFrameEmail_Tapped">
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                            </Frame >
+                            <!-- Tab handler -->
+                                <ContentView HorizontalOptions="End" Margin="15, 0, 5, 0">
+                                    <ImageButton x:Name="openTab"
+                                    HorizontalOptions="End"
+                                    Source="menu.png"
+                                    Scale="1.8"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    
+                                    Padding="0"
+                                    Clicked="OnOpenMenuClicked"
+                                    />
+                                </ContentView>
+                            </StackLayout>
+                        <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                        <StackLayout Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                            <!-- list of materials -->
+                            <Frame CornerRadius="10" BackgroundColor="White" HasShadow="False" VerticalOptions="FillAndExpand" Padding="15">
+                                <StackLayout>
+                                    <CollectionView x:Name="demandList"
+                                          BackgroundColor="Transparent"
+                                          VerticalOptions="FillAndExpand"
+                                          SelectionMode="None"
+                                         
+                                          >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:Name="MatTemp">
+                                                <Frame
+                                                           BackgroundColor="White"
+                                                           Padding="0, 0, 0, 20"
+                                                           >
+                                                    <Frame CornerRadius="10"
+                                                           BackgroundColor="#D9D9D9"
+                                                           Padding="10">
+                                                        <StackLayout Orientation="Vertical" 
+                                                                     VerticalOptions="Center" 
+                                                                     BackgroundColor="Transparent"
+                                                                     >
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <StackLayout Orientation="Vertical">
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Frame  BackgroundColor="#491375" 
+                                                                                    CornerRadius="5" 
+                                                                                    Padding="8,2,8,2" >
+                                                                            <Label Text="{Binding Num}" 
+                                                                                       TextColor="White" 
+                                                                                       HorizontalTextAlignment="Center"
+                                                                                       FontFamily="Unbounded"/>
+                                                                        </Frame>
+                                                                        <Label Text="{Binding Name}" 
+                                                                                   FontSize="16"
+                                                                                   TextColor="Black"
+                                                                                   Padding="10,0,0,0"
+                                                                                   FontFamily="UnboundedBold"/>
+                                                                    </StackLayout>
+                                                                        <Label Text= "{Binding Quantity, StringFormat='Количество: {0}'}" 
+                                                                               TextColor="Black"
+                                                                               FontSize="16"
+                                                                               FontFamily="Unbounded"/>
+                                                                        <Label Text= "{Binding OccupiedMaterials.Count, StringFormat='Материалы: {0}'}" 
+                                                                               TextColor="Black"
+                                                                               FontSize="16"
+                                                                               FontFamily="Unbounded"/>
+                                                                        
+                                                                    </StackLayout>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal" >
+
+                                                                <Button Text ="Изменить"
+                                                                            FontSize="16"
+                                                                            TextTransform="None"
+                                                                            CornerRadius="10"
+                                                                            HeightRequest="27"
+                                                                            Padding="0,0,0,0"
+                                                                            TextColor="White"
+                                                                            BackgroundColor="#7272B7"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            VerticalOptions="Start"
+                                                                            FontFamily="Unbounded"
+                                                                            Command="{Binding Path=BindingContext.ChangeCommand, Source={x:Reference demandList}}" 
+                                                                            CommandParameter="{Binding .}"
+                                                                            >
+                                                                </Button>
+                                                                <Button Text ="Удалить"
+                                                                            TextTransform="None"
+                                                                            TextColor="White"
+                                                                            FontSize="16"
+                                                                            BackgroundColor="#491375"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            VerticalOptions="Start"
+                                                                            CornerRadius="10"
+                                                                            HeightRequest="27"
+                                                                            Padding="0,0,0,0"
+                                                                            FontFamily="Unbounded"
+                                                                            Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference demandList}}"
+                                                                            CommandParameter="{Binding .}"
+                                                                            />
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Frame>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <Button x:Name="addDemandButton"
+                                        HorizontalOptions="Center"
+                                        Text="Добавить"
+                                        TextColor="White"
+                                        FontSize="18"
+                                        BackgroundColor="#491375"
+                                        VerticalOptions="Start"
+                                        CornerRadius="15"
+                                        Padding="20,0,20,0"
+                                        FontFamily="Unbounded"
+                                        Clicked="OnDemandAdd"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+        </Frame>
+
+    </StackLayout>
+        <Grid x:Name="swipeMenuGrid" BackgroundColor="Transparent" IsVisible="false" InputTransparent ="False">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#AAAEE7" Offset="0.0" />
+                    <GradientStop Color="AliceBlue" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <!-- Swipe menu -->
+            <Grid x:Name="swipeMenu" HorizontalOptions="Start" TranslationX="400" InputTransparent ="False">
+                <Frame x:Name="swipeMenuFrame" Padding="10" WidthRequest="300" InputTransparent ="False">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#491375"
+                                          Offset="0.1" />
+                            <GradientStop Color="#80C2FE"
+                                          Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout BackgroundColor="Transparent" Padding="0,0,25,0" VerticalOptions="Fill">
+                        <ContentView HorizontalOptions="Center" Margin="0, 50, 0, 50">
+                            <ImageButton
+                                    HorizontalOptions="Start"
+                                    Source="self.png"
+                                    Scale="3"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="50"
+                                    Padding="0"
+                                    Clicked="GoToProfile"
+                                    />
+                        </ContentView>
+                        <Label x:Name="mailTextSwipe" Text="mail@mail.com" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="18"/>
+                        <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                            <StackLayout>
+                            <StackLayout HorizontalOptions="Start" Orientation="Horizontal" >
+                                <ContentView HorizontalOptions="End" Margin="20, 0, 10, 0">
+                                    <ImageButton
+                                    HorizontalOptions="End"
+                                    Source="self.png"
+                                    Scale="3"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    Padding="0"
+                                    Clicked="GoToProfile"
+                                    />
+                                </ContentView>
+                                <Button Text="Профиль" TextTransform="None" FontFamily="Unbounded" Clicked="GoToProfile" TextColor="White" BackgroundColor="Transparent" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,5,0,5">
+                                <ContentView HorizontalOptions="End" Margin="20, 0, 10, 0">
+                                    <ImageButton
+                                    HorizontalOptions="End"
+                                    Source="upload.png"
+                                    Scale="3"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    Padding="0"
+                                    Clicked="SaveInfo"
+                                    />
+                                </ContentView>
+                                <Button x:Name="saveTextButton" Text="Сохранить" TextTransform="None" FontFamily="Unbounded" Clicked="SaveInfo" TextColor="White" BackgroundColor="Transparent" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,5,0,5">
+                                <ContentView HorizontalOptions="End" Margin="20, 0, 10, 0">
+                                    <ImageButton
+                                    HorizontalOptions="End"
+                                    Source="excel.png"
+                                    Scale="3"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    Padding="0"
+                                    Clicked="GoToTablese"
+                                    />
+                                </ContentView>
+                                <Button Text="Таблицы" TextTransform="None" FontFamily="Unbounded" Clicked="GoToTablese" TextColor="White" BackgroundColor="Transparent" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,5,0,5">
+                                <ContentView HorizontalOptions="End" Margin="20, 0, 10, 0">
+                                    <ImageButton
+                                    HorizontalOptions="End"
+                                    Source="demands.png"
+                                    Scale="3"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    Padding="0"
+                                    Clicked="GoToProducts"
+                                    />
+                                </ContentView>
+                                <Button Text="Заказы" TextTransform="None" FontFamily="Unbounded" Clicked="GoToProducts" TextColor="White" BackgroundColor="Transparent"  FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,5,0,5">
+                                <ContentView HorizontalOptions="End" Margin="20, 5, 10, 0">
+                                    <ImageButton
+                                    HorizontalOptions="End"
+                                    Source="materials.png"
+                                    Scale="3"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    Padding="0"
+                                    Clicked="GoTomaterials"
+                                    />
+                                </ContentView>
+                                <Button Text="Материалы" TextTransform="None" FontFamily="Unbounded" Clicked="GoTomaterials" TextColor="White" BackgroundColor="Transparent"  FontSize="20"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="EndAndExpand">
+                            <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                            <Button Text="Выйти" VerticalOptions="End" FontFamily="Unbounded" TextColor="White" BackgroundColor="Transparent"  Clicked="CloseApp"  FontSize="20"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DoNothing" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnSwipeMenuBackgroundTapped" />
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
+
+
+
+</ContentPage>

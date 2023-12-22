@@ -1,0 +1,136 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Font\Unbounded-Black.ttf" />
+    <None Remove="Font\Unbounded-Bold.ttf" />
+    <None Remove="Font\Unbounded-ExtraBold.ttf" />
+    <None Remove="Font\Unbounded-ExtraLight.ttf" />
+    <None Remove="Font\Unbounded-Light.ttf" />
+    <None Remove="Font\Unbounded-Medium.ttf" />
+    <None Remove="Font\Unbounded-Regular.ttf" />
+    <None Remove="Font\Unbounded-SemiBold.ttf" />
+    <None Remove="Font\Unbounded-VariableFont_wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Font\Unbounded-Black.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-Bold.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-ExtraBold.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-ExtraLight.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-Light.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-Medium.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-Regular.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-SemiBold.ttf" />
+    <EmbeddedResource Include="Font\Unbounded-VariableFont_wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.0.4" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.6" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Files\Demand\Demand.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Materials\MaterialInterface.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Transfer\ExportAndImportInterface.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Transfer\Table.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Transfer\ExportAndImport.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Handlers\InfoHandler.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Handlers\UserInput.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Visuals\VisualizerInterface.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Visuals\Visualizer.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Transfer\ExcelTable.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Demand\DemandBase.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Materials\Material.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Demand\DemandInterface.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Materials\MaterialBase.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Files\Handlers\AppHandler.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Front\AlertDemandSearch.xaml.cs">
+      <DependentUpon>AlertDemandSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\AlertDemand.xaml.cs">
+      <DependentUpon>AlertDemand.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\DemandPage.xaml.cs">
+      <DependentUpon>DemandPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\MaterialPage.xaml.cs">
+      <DependentUpon>MaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\SaveAlert.xaml.cs">
+      <DependentUpon>SaveAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\TablesAddAlert.xaml.cs">
+      <DependentUpon>TablesAddAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\TablesAlert.xaml.cs">
+      <DependentUpon>TablesAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\TablesPage.xaml.cs">
+      <DependentUpon>TablesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\SureAlert.xaml.cs">
+      <DependentUpon>SureAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\AlertMaterial.xaml.cs">
+      <DependentUpon>AlertMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\OptionsPage.xaml.cs">
+      <DependentUpon>OptionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Front\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="FlyoutPage1Detail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SortingApp.SignUpPage">
+    <StackLayout>
+
+        <Entry IsPassword="False" Placeholder="Nickname..." />
+        <Entry IsPassword="True" Placeholder="Passwod..." />
+        <Editor Placeholder="Enter text..."/>
+
+        <Slider Minimum="0" Maximum="50" VerticalOptions="CenterAndExpand"/>
+        <Switch IsToggled="True" VerticalOptions="Start"/>
+
+        <Image Source ="https://cs8.pikabu.ru/post_img/big/2016/02/04/7/145458292112119207.jpg"/>
+        <WebView Source="https://Google.com"/>
+
+    </StackLayout>
+
+</ContentPage>

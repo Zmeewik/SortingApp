@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage 
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:popup = "clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="SortingApp.AlertDemandSearch">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="400" WidthRequest="300">
+        <Frame CornerRadius="20" HasShadow="False">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#491375"
+                                  Offset="0.1" />
+                    <GradientStop Color="#80C2FE"
+                                  Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <StackLayout>
+                    <!-- Your content goes here -->
+                    <Label Text="Материалы" TextColor="White" FontFamily="Unbounded"/>
+                    <!-- Add a search bar and list for adding materials -->
+                <Frame Background="White" Padding="10" CornerRadius="10">
+                <StackLayout>
+                    <SearchBar x:Name="searchBar" TextChanged="OnSearchButtonPressed" />
+                        <ListView x:Name="materialListSearch"
+                                  ItemsSource="{Binding YourMaterialList}"
+                                  ItemTapped="OnMaterialTapped"
+                                  RowHeight="80"
+                                  >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout VerticalOptions="Center" Orientation="Vertical" Padding="10">
+                                            <Label Text="{Binding Name}" FontFamily="Unbounded" FontSize="16" VerticalOptions="Center" TextColor="Black"/>
+                                            <Label Text="{Binding UnusedQuantity, StringFormat='Свободно: {0}'}" FontFamily="Unbounded" FontSize="16" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Orientation="Horizontal" Margin="0,10,0,0" HorizontalOptions="Center">
+                    <Button Text="Добав." Clicked= "OnSave" 
+                            TextColor="White"
+                            FontSize="16"
+                            BackgroundColor="#491375"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start"
+                            CornerRadius="10"
+                            HeightRequest="27"
+                            WidthRequest="100"
+                            Padding="0,0,0,0"
+                            FontFamily="Unbounded"/>
+                    <Button Text="Отмена" Clicked ="OnCancel" 
+                            TextColor="White"
+                            FontSize="16"
+                            BackgroundColor="#7272B7"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start"
+                            CornerRadius="10"
+                            HeightRequest="27"
+                            WidthRequest="100"
+                            Padding="0,0,0,0"
+                            FontFamily="Unbounded"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>
+
